@@ -5,7 +5,7 @@
 #   preferência ou pode ser previamente definida no código;
     # b) Evite usar funções prontas, como, por exemplo, reverse;
     
-def Lista(f):
+def Inverte(f):
     frase_invertida = ""
     for palavra in range(len(f)-1, -1, -1):
         frase_invertida += f[palavra]
@@ -15,5 +15,5 @@ def Lista(f):
             
   
 frase = input()
-Lista(frase)
+Inverte(frase)
 
