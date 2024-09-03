@@ -1,14 +1,10 @@
 import json
 
-def processar_faturamento(dados_json):
-    # Carregar os dados do JSON
-    dados = json.loads(dados_json)
+def processar_faturamento(dados):
+    valores = [] #Lista vazia
     
-    # Inicializar listas para armazenar os valores de faturamento
-    valores = []
-    
-    # Loop para extrair os valores de faturamento, ignorando valores zero
-    for item in dados["faturamento"]:
+    # Loop para extrair os valores de faturamento e ignorar os valores zerados
+    for item in dados:
         valor = item["valor"]
         if valor > 0:
             valores.append(valor)
@@ -45,21 +41,9 @@ def processar_faturamento(dados_json):
     print(f"Maior valor de faturamento: R${maior_valor:.2f}")
     print(f"Número de dias com faturamento acima da média: {dias_acima_media}")
 
-# Exemplo de dados JSON 
-#(em uma aplicação real, poderia ler isso de um arquivo)
-dados_json = '''
-{
-    "faturamento": [
-        {"dia": 1, "valor": 1500},
-        {"dia": 2, "valor": 2000},
-        {"dia": 3, "valor": 0},
-        {"dia": 4, "valor": 1800},
-        {"dia": 5, "valor": 0},
-        {"dia": 6, "valor": 0},
-        {"dia": 7, "valor": 2500}
-    ]
-}
-'''
+# Exemplo de como carregar os dados JSON de um arquivo
+with open('dados.json', 'r') as file:
+    dados_json = json.load(file)
 
 # Chama a função com os dados JSON
 processar_faturamento(dados_json)
